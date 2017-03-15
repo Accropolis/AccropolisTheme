@@ -1,0 +1,111 @@
+/*****************
+  icon mail
+*****************/
+
+.home--contact-icon-wrapper {
+	position: absolute;
+	left:0;
+	right:0;
+	margin:0 auto;
+	text-align: center;
+	$icon-contact : 20vw;
+	top: (- $icon-contact / 2);
+	width:$icon-contact;
+	height:$icon-contact;
+	i {
+		font-size: rem-calc(25);
+		line-height: $icon-contact;
+		color:$primary-color;
+	}
+	@include breakpoint(medium) {
+		top: (- $icon-contact / 2.5);
+		width:($icon-contact / 1.5);
+		height:($icon-contact / 1.5);
+		i {
+			font-size: rem-calc(40);
+			line-height: ($icon-contact / 1.5)
+		}
+	}
+	@include breakpoint(large) {
+		top: (-130px / 2);
+		width:130px;
+		height:130px;
+		i {
+			font-size: rem-calc(50);
+			line-height: 130px;
+		}
+	}
+	background:$white;
+	border-radius: 50%;
+	border:1px $primary-color solid;
+	text-align: center;
+}
+
+/*****************
+  formulaire
+*****************/
+
+form.wpcf7-form {
+	position: relative;
+	display:flex;
+	flex-direction: column;
+	p label {
+		color: $white;
+		text-transform: uppercase;
+		font-size: rem-calc(12);
+		span input,
+		span textarea, {
+			background: transparent;
+		}
+		span input:focus,
+		span textarea:focus {
+			background: rgba($white,0.25);
+			border-color:$white;
+			color:$white;
+		}
+	}
+	@include breakpoint(large) {
+		flex-wrap: wrap;
+		padding-top: 50px;
+		align-items: flex-start;
+		justify-content: flex-start;
+		p:nth-child(-n+3) {
+			width: 48.5%;
+		}
+		p:nth-child(4) {
+			position: absolute;
+			right:0;
+			width: 48.5%;
+			align-self: flex-end;
+			margin-bottom:0;
+		}
+		p:nth-child(5) {
+			width:48.5%;
+			align-self: stretch;
+			margin-bottom:0;
+		}
+	}
+}
+
+.wpcf7-submit {
+	width:100%;
+	line-height: 40px;
+	background: $white;
+	color:$primary-color;
+	text-transform: uppercase;
+	border:none;
+	position: relative;
+	top:15px;
+}
+
+span.wpcf7-not-valid-tip {
+	color:rgba($white,0.75);
+	position: relative;
+	top:-15px;
+}
+
+.wpcf7-response-output {
+	border: 1px solid $white !important;
+	padding: 20px !important;
+	color:$white;
+}

@@ -1,0 +1,108 @@
+.sites-button {
+  background: #FF6908;
+  font-size: 1.25rem;
+  font-weight: bold;
+  box-shadow: 0 -2px 0 rgba(0,0,0,0.2) inset;
+  border-radius: 3px;
+  border: none;
+}
+
+.button {
+	text-transform: uppercase;
+	line-height: 30px;
+}
+
+.hollow {
+	background-color: rgba($white,0.95) !important;
+}
+
+
+.home-livebuttons {
+	.button {
+		// font-weight: bold;
+		margin-bottom:10px !important;
+		@include breakpoint(small) {
+			font-size: rem-calc(12) !important;
+		}
+		@include breakpoint(medium) {
+			font-size: rem-calc(10) !important;
+		}
+		@include breakpoint(large) {
+			font-size: rem-calc(15) !important;
+		}
+	}
+
+}
+
+.home--button-twitch {
+	background-color: $twitch !important;
+}
+.home--button-discord {
+	background-color: $discord !important;
+}
+.home--button-youtube {
+	background-color: $youtube !important;
+}
+
+#home--button-extensions-desktop {
+	background-color: rgba($primary-color,0.15) !important;
+	color: $primary-color;
+	&::after {
+		border-color: $primary-color transparent transparent;
+		top: 11px;
+		right: 40px;
+	}
+}
+
+#home--button-programmation-large {
+	position: absolute;
+	top:1px;
+	@include breakpoint(large) {
+		right: 32.8vw;
+	}
+	@include breakpoint(xlarge) {
+		right: 401px;
+	}
+	$taille-bouton : 57.5px;
+		width: $taille-bouton * 3;
+		height: $taille-bouton;
+		line-height: $taille-bouton;
+		font-size: rem-calc($taille-bouton / 2) !important;
+	padding: 0;
+	z-index: 200;
+}
+
+.dropdown-pane {
+	margin:0;
+	padding: 0;
+	background:$white;
+	border:none;
+	position: absolute !important; // ?? chelou
+	a {
+		margin:0;
+		color:$outer-space;
+		text-align: left;
+		position: relative;
+		&:nth-child(odd){
+			background-color: rgba($primary-color,0.25);
+		}
+		&:nth-child(even){
+			background-color: rgba($primary-color,0.15);
+		}
+		i:first-child {
+			color:$primary-color;
+			margin-right: 20px;
+		}
+		i:last-child {
+			color:rgba($outer-space,0.5);
+			position:absolute;
+			top:40%;
+			right: 20px;
+			font-size: rem-calc(15);
+			transition: 0.1s linear;
+		}
+		&:hover i:last-child {
+			font-size: rem-calc(18);
+		}
+	}
+}

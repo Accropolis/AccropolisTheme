@@ -1,0 +1,101 @@
+#footer-container {
+  max-width: 100%;
+  width: 100%;
+	margin:0 auto;
+	@include breakpoint(medium) {
+		margin: rem-calc(250) auto 0 auto;
+	}
+	background-color: $black;
+
+  #footer {
+    @include grid-row();
+    padding: rem-calc(30) 0;
+  }
+	.footer--wrapper {
+		@include grid-column(12);
+		@include breakpoint(medium) {
+			@include grid-column(8);
+		}
+		@include breakpoint(large) {
+			@include grid-column(12);
+		}
+	}
+}
+
+#footer--logo {
+	@include grid-col-off(1);
+	@include grid-column(10);
+	@include breakpoint(medium) {
+		@include grid-col-off(3);
+		@include grid-column(6);
+	}
+	@include breakpoint(large) {
+		@include grid-col-off(5);
+		@include grid-column(2);
+	}
+}
+
+#footer {
+	.footer-widget {
+		// background:red;
+		@include breakpoint(medium) {
+
+		}
+		@include breakpoint(large) {
+
+		}
+	}
+	#menu-footer {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		display: block;
+		padding-top: 20px;
+		text-align: center;
+	}
+	.facebook,.twitter,.youtube,.twitch,.discord,.instagram,.shop,.snapchat {
+		display: inline-block;
+		$footer-icon : 15px;
+		width:$footer-icon;
+		height:$footer-icon;
+		line-height: $footer-icon;
+		text-indent: -9999px;
+		// background: red;
+		margin-right:10px;
+		a {
+			background-position: center center;
+			background-repeat: no-repeat;
+			width:$footer-icon;
+			height:$footer-icon;
+			border-bottom: 2px solid rgba($primary-color,0);
+			transition: 0.5s linear;
+			&:hover {
+				border-bottom: 2px solid rgba($primary-color,1);
+			}
+		}
+	}
+	.facebook a {
+		background-image: url(../images/footer/facebook.svg);
+	}
+	.twitter a {
+		background-image: url(../images/footer/twitter.svg);
+	}
+	.youtube a {
+		background-image: url(../images/footer/youtube.svg);
+	}
+	.twitch a {
+		background-image: url(../images/footer/twitch.svg);
+	}
+	.discord a {
+		background-image: url(../images/footer/discord.svg);
+	}
+	.instagram a {
+		background-image: url(../images/footer/instagram.svg);
+	}
+	.shop a {
+		background-image: url(../images/footer/shop.svg);
+	}
+	.snapchat a {
+		background-image: url(../images/footer/snapchat.svg);
+	}
+}

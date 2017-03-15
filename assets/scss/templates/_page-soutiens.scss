@@ -1,0 +1,112 @@
+#page-soutiens {
+  @include grid-row();
+  margin-top: 3rem;
+  .main-content {
+    @include breakpoint(small) {
+      @include grid-column(12);
+    }
+  }
+}
+
+
+#soutien--list-wrapper {
+	@include grid-row();
+}
+
+a.soutien--soutien {
+	&:hover {
+		.soutien--soutien-wrapper {
+			background-color: darken($primary-color,10);
+			img:first-child {
+				transform: scale(1.05);
+			}
+		}
+	}
+}
+div.soutien--soutien {
+	height:200px;
+	transform: scaleY(1);
+	transition: 0.1s linear;
+	overflow: hidden;
+	.soutien--soutien-wrapper {
+		transition: 0.25s linear;
+	}
+	.soutien--socials-wrapper {
+		transition: 0.25s linear;
+		position: absolute;
+		top:200px;
+		height:200px;
+		margin-left: 30px;
+		width:90%;
+		text-align: center;
+		a {
+			z-index: 999;
+			display: inline-block;
+			background: $primary-color;
+			width:100px;
+			height:100px;
+			line-height: 100px;
+			font-size: rem-calc(25);
+			margin: 50px 10px;
+			color:$white;
+			transition: 0.5s linear;
+			&:hover {
+				background: darken($primary-color,15);
+			}
+		}
+	}
+	&:hover {
+		.soutien--soutien-wrapper {
+			position: relative;
+			top:-200px;
+			z-index: -1;
+		}
+		.soutien--socials-wrapper {
+			top:0px;
+		}
+	}
+}
+
+.soutien--soutien-wrapper {
+	background-color: $primary-color;
+	overflow: hidden;
+	position:relative;
+	height:200px;
+	top:0px;
+	margin-bottom: 20px;
+	transition: 0.5s linear;
+	text-align: center;
+	img:first-child {
+		position: absolute;
+		top:0;bottom:0;
+		opacity:0.5;
+		left:35%;
+		@include breakpoint(large) {
+			opacity:1;
+			left:15%;
+		}
+		max-width:50%;
+		max-height: 50%;
+		margin: auto 20px auto 0;
+		transition: 0.15s linear;
+		transform: scale(1);
+	}
+	h3 {
+		position: absolute;
+		display: inline-block;
+		line-height: 200px;
+		text-align: center;
+		width:100%;
+		@include breakpoint(large) {
+			width:75%;
+		}
+		right:0;
+		margin:0 auto;
+		text-transform: uppercase;
+		text-align: center;
+		font-size: rem-calc(18);
+		font-weight: bold;
+		color:$white;
+		transition: 0.4s linear;
+	}
+}
