@@ -64,7 +64,9 @@ var PATHS = {
 
     // Include your own custom scripts (located in the custom folder)
 		'assets/javascript/custom/*.js',
-		'youtubevds/build/static/js/*.js',
+  ],
+  youtubevds: [
+    'youtubevds/build/static/js/*.js',
   ],
   phpcs: [
     '**/*.php',
@@ -164,6 +166,17 @@ gulp.task('javascript', function() {
     .pipe(browserSync.stream());
 });
 
+gulp.task('youtubevds', function() {
+  return gulp.src(PATHS.youtubevds)
+    .pipe($.sourcemaps.init())
+    .pipe($.babel())
+    .pipe($.concat('youtubevds.js', {
+      newLine:'\n;'
+    }))
+    .pipe(gulp.dest('assets/javascript'))
+    .pipe(browserSync.stream());
+});
+
 // Copy task
 gulp.task('copy', function() {
   // Font Awesome
@@ -189,7 +202,7 @@ gulp.task('package', ['build'], function() {
 // Runs copy then runs sass & javascript in parallel
 gulp.task('build', ['clean'], function(done) {
   sequence('copy',
-          ['sass', 'javascript', 'lint'],
+          ['sass', 'javascript', 'youtubevds', 'lint'],
           done);
 });
 
@@ -253,7 +266,7 @@ gulp.task('default', ['build', 'browser-sync'], function() {
     });
 
   // JS Watch
-  gulp.watch(['assets/javascript/custom/**/*.js'], ['clean:javascript', 'javascript', 'lint'])
+  gulp.watch(['assets/javascript/custom/**/*.js'], ['clean:javascript', 'javascript', 'youtubevds', 'lint'])
     .on('change', function(event) {
       logFileChange(event);
     });

@@ -27,7 +27,9 @@ class Videos extends Component {
   }
 
   getLatestVideos() {
-		const url = `/accropolis/wp-json/getlatestvids/v1/getlatestvids`
+    /*eslint-disable */
+		const url = `${templateUrl}/wp-json/getlatestvids/v1/getlatestvids`;
+    /*eslint-enable */
     const _this = this;
     Axios.get(url).then(function(result) {
       _this.setState ({
