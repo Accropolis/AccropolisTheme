@@ -1,3 +1,6 @@
+<section id="home--programmation-planning">
+	<?php the_field( 'home-calendrier' ) ?>
+</section>
 <section id="home--live">
 
 	<a href="<?= $programmationLien ?>" id="home--button-programmation-large" class="button show-for-large hollow">
