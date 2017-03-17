@@ -171,7 +171,7 @@
   YouTube vidéos
 *****************/
 
-#youtube-videos {
+#youtube-video {
 	margin-bottom:10px;
 	.column {
 		padding: 10px 0px !important;
@@ -205,6 +205,11 @@
 			margin-top: 19px !important;
 		}
 	}
+}
+
+.responsive-embed {
+	margin:0;
+	padding:0;
 }
 
 .home--youtube-video {
@@ -414,6 +419,10 @@
 		top:20px;
 		border-radius: 50%;
 		border:3px solid $white;
+		max-width: 125px;
+		@include breakpoint(medium) {
+			max-width: 30%;
+		}
 	}
 	p {
 		line-height: rem-calc(18);
