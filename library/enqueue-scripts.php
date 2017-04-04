@@ -20,6 +20,7 @@ if ( ! function_exists( 'foundationpress_scripts' ) ) :
 
 	// CDN hosted jQuery placed in the header, as some plugins require that jQuery is loaded in the header.
 	wp_enqueue_script( 'jquery', '//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js', array(), '2.1.0', false );
+	wp_enqueue_script( 'fetch-polyfill', 'https://cdn.polyfill.io/v2/polyfill.min.js?features=fetch', array(), '2.1.0', false );
 
 	// If you'd like to cherry-pick the foundation components you need in your project, head over to gulpfile.js and see lines 35-54.
 	// It's a good idea to do this, performance-wise. No need to load everything if you're just going to use the grid anyway, you know :)

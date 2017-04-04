@@ -1,35 +1,7 @@
 <section id="home--programmation-planning">
 	<?php the_field( 'home-calendrier' ) ?>
 </section>
-<section id="home--live">
-
-	<a href="<?= $programmationLien ?>" id="home--button-programmation-large" class="button show-for-large hollow">
-		<i class="fa fa-calendar"></i>
-	</a>
-	<iframe
-		id="home--iframe-twitch"
-		class="column small-12 large-8 twitch-integration"
-		frameborder="0"
-		allowfullscreen="true"
-		scrolling="no"
-		src="https://player.twitch.tv/?channel=<?php the_field('home-live-twitch') ?>">
-	</iframe>
-	<iframe
-		class="column show-for-medium-only medium-4 twitch-integration-medium"
-		frameborder="0"
-    scrolling="no"
-    id="chat_embed"
-    src="http://www.twitch.tv/<?php the_field('home-live-twitch') ?>/chat">
-	</iframe>
-	<iframe
-		class="column show-for-large large-4 twitch-integration-large"
-		frameborder="0"
-    scrolling="no"
-    id="chat_embed"
-    src="http://www.twitch.tv/<?php the_field('home-live-twitch') ?>/chat">
-	</iframe>
-
-</section>
+<section id="home--live"></section>
 
 <section id="home--livebuttons-mobile" class="expanded button-group show-for-small-only home-livebuttons">
 	<!-- Mobile Only -->
@@ -79,6 +51,7 @@
 	</a>
 </div>
 
+<!--
 <section id="home--youtube" class="home--section-wrapper">
 	<header class="row show-for-medium">
 		<h2>Derniers Replay</h2>
@@ -101,3 +74,4 @@
 		</a>
 	</div>
 </section>
+-->

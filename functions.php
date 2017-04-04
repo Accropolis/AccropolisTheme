@@ -52,8 +52,10 @@ require_once( 'library/responsive-images.php' );
 
 /** Constants */
 define('HOME_PAGE_ID', 2);
+define('DEBUG_CURL', FALSE);
 
 /** Custom actions */
 require_once( 'library/actions.php' );
 
-require_once( 'getlatestvids.php' );
+require_once( 'getLatestVids.php' );
+require_once( 'getTwitchStream.php' );
