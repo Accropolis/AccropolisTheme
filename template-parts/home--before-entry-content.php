@@ -51,7 +51,7 @@
 	</a>
 </div>
 
-<!--
+
 <section id="home--youtube" class="home--section-wrapper">
 	<header class="row show-for-medium">
 		<h2>Derniers Replay</h2>
@@ -74,4 +74,3 @@
 		</a>
 	</div>
 </section>
--->

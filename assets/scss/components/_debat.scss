@@ -1,0 +1,11 @@
+#iframe-debat {
+	@include breakpoint(small) {
+		min-height: 2000px;
+	}
+	// @include breakpoint(medium) {
+	// 	min-height: 1750px;
+	// }
+	@include breakpoint(large) {
+		min-height: 1500px;
+	}
+}

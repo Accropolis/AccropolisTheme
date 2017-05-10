@@ -117,7 +117,7 @@
 	function GetEquipe() {
 		$args = array(
 			'post_type' => 'equipe',
-			'posts_per_page' => 3,
+			'posts_per_page' => 10,
 			'order' => ASC
 		);
 		$loop = new WP_Query( $args );
@@ -130,6 +130,7 @@
 
 	function GetMedias() {
 		$args = array(
+			'posts_per_page' => 100,
 			'post_type' => 'medias',
 			'order' => ASC
 		);

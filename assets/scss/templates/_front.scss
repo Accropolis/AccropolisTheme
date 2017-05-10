@@ -369,6 +369,7 @@
 
 .home--equipe-wrapper {
 	text-align: center;
+	margin-bottom:50px;
 }
 
 .home--equipe-membre {
@@ -458,6 +459,7 @@
 		a img {
 			opacity: 1;
 			transition: 0.2s linear;
+			max-width: 150px;
 		}
 		a:hover img {
 			opacity:0.75;

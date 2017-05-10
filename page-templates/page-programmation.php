@@ -13,7 +13,7 @@ get_header(); ?>
   <article <?php post_class('main-content') ?> id="post-<?php the_ID(); ?>">
       <header>
         <h1 class="entry-title"><?php the_title(); ?></h1>
-				<h3>Page en construction</h3>
+				<h3 class="cons-title">Page en construction</h3>
       </header>
 			<!-- <div id="programmation--google-sheet">
 				<iframe src="<?php //the_field('programmation-link-google') ?>"></iframe>

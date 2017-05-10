@@ -13,7 +13,7 @@ get_header(); ?>
   <article <?php post_class('main-content') ?> id="post-<?php the_ID(); ?>">
       <header>
         <h1 class="entry-title"><?php the_title(); ?></h1>
-				<h3>Page en construction</h3>
+				<!-- <h3 class="cons-title">Page en construction</h3> -->
       </header>
       <?php do_action( 'foundationpress_page_before_entry_content' ); ?>
       <div class="entry-content">
