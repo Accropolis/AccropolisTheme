@@ -285,7 +285,7 @@ gulp.task('deploy', function() {
     password: process.env.FTP_PASSWORD,
     log: gutil.log
   });
-  gulp.src(['./*.*', './youtubevds/**/*.*', './template-parts/**/*.*', './page-templates/**/*.*', './library/**/*.*', './languages/**/*.*', './assets/**/*.*'])
+  gulp.src(PATHS.pkg)
     .pipe(conn.newer(remotePath))
     .pipe(conn.dest(remotePath));
 });
