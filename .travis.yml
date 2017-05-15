@@ -2,4 +2,5 @@ language: node_js
 node_js:
   - "6.10.3"
 after_success:
-  "curl --ftp-create-dirs -T 404.php -u $FTP_USER:$FTP_PASSWORD ftp://$FTP_HOST/accropolis/wp-content/themes/Accropolis2017/"
+  "npm run production"
+  "./deploy.sh"
