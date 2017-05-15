@@ -278,14 +278,14 @@ gulp.task('default', ['build', 'browser-sync'], function() {
 });
 
 gulp.task('deploy', function() {
-  var remotePath = '/public_html/';
+  var remotePath = '/accropolis/wp-content/themes/Accropolis2017/';
   var conn = ftp.create({
     host: process.env.FTP_HOST,
     user: process.env.FTP_USER,
     password: process.env.FTP_PASSWORD,
     log: gutil.log
   });
-  gulp.src(['index.html', './**/*.css'])
+  gulp.src(['./*.*', './youtubevds/**/*.*', './template-parts/**/*.*', './page-templates/**/*.*', './library/**/*.*', './languages/**/*.*', './assets/**/*.*'])
     .pipe(conn.newer(remotePath))
     .pipe(conn.dest(remotePath));
 });

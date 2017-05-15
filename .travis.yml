@@ -3,4 +3,4 @@ node_js:
   - "6.10.3"
 after_success:
   "npm run production"
-  "./deploy.sh"
+  "npm run deploy"
