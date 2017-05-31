@@ -12,6 +12,11 @@ var dateFormat  = require('dateformat');
 var del         = require('del');
 var cleanCSS    = require('gulp-clean-css');
 
+var ftp = require('vinyl-ftp');
+var gutil = require('gulp-util');
+var minimist = require('minimist');
+var args = minimist(process.argv.slice(2));
+
 // Enter URL of your local server here
 // Example: 'http://localwebsite.dev'
 var URL = '';
@@ -270,4 +275,16 @@ gulp.task('default', ['build', 'browser-sync'], function() {
     .on('change', function(event) {
       logFileChange(event);
     });
+});
+
+gulp.task('deploy', function() {
+  var remotePath = '/accropolis/wp-content/themes/Accropolis2017/';
+  var conn = ftp.create({
+    host: process.env.FTP_HOST,
+    user: process.env.FTP_USER,
+    password: process.env.FTP_PASSWORD,
+    log: gutil.log
+  });
+  gulp.src(PATHS.pkg, { base: '.', buffer: false })
+    .pipe(conn.dest(remotePath));
 });
