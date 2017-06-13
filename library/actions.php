@@ -118,7 +118,7 @@
 		$args = array(
 			'post_type' => 'equipe',
 			'posts_per_page' => 10,
-			'order' => ASC
+			'order' => asc
 		);
 		$loop = new WP_Query( $args );
 		while ( $loop->have_posts() ) : $loop->the_post();
