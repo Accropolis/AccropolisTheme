@@ -1,0 +1,32 @@
+.error404 {
+	svg {
+		max-width: 400px;
+		margin: 100px 35%;
+	}
+}
+
+.svg-404-paths {
+  stroke-dasharray: 1000;
+}
+
+#svg-404-path1 .svg-404-paths {
+	animation: dash 30s linear;
+}
+
+#svg-404-path2 .svg-404-paths {
+	animation: dash 15.5s linear;
+	stroke: rgba($primary-color,0.15);
+}
+
+@keyframes dash {
+	from {
+		stroke-dashoffset: 1000;
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+  to {
+    stroke-dashoffset: 0;
+  }
+}
