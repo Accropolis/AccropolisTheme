@@ -118,7 +118,7 @@
 		$args = array(
 			'post_type' => 'equipe',
 			'posts_per_page' => 10,
-			'order' => asc
+			'order' => "ASC"
 		);
 		$loop = new WP_Query( $args );
 		while ( $loop->have_posts() ) : $loop->the_post();
@@ -132,7 +132,7 @@
 		$args = array(
 			'posts_per_page' => 100,
 			'post_type' => 'medias',
-			'order' => ASC
+			'order' => "ASC"
 		);
 		$loop = new WP_Query( $args );
 		while ( $loop->have_posts() ) : $loop->the_post();
@@ -145,7 +145,7 @@
 	function GetEmission() {
 		$args = array(
 			'post_type' => 'emission',
-			'order' => ASC
+			'order' => "ASC"
 		);
 		$loop = new WP_Query( $args );
 		while ( $loop->have_posts() ) : $loop->the_post();
@@ -159,7 +159,7 @@
 	function GetSoutien() {
 		$args = array(
 			'post_type' => 'soutien',
-			'order' => DESC
+			'order' => "DESC"
 		);
 		$loop = new WP_Query( $args );
 		while ( $loop->have_posts() ) : $loop->the_post();
