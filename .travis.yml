@@ -4,3 +4,7 @@ node_js:
 after_success:
   - "npm run build"
   - "npm run deploy"
+cache:
+  directories:
+    - node_modules
+
