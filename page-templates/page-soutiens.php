@@ -12,7 +12,11 @@ get_header(); ?>
 <?php while ( have_posts() ) : the_post(); ?>
   <article <?php post_class('main-content') ?> id="post-<?php the_ID(); ?>">
       <header>
-        <h1 class="entry-title"><?php the_title(); ?></h1>
+					<h1 class="entry-title animated-title">
+						<div class="animated-title content__title__inner">
+							<?php the_title(); ?>
+						</div>
+					</h1>
 				<!-- <h3 class="cons-title">Page en construction</h3> -->
       </header>
       <?php do_action( 'foundationpress_page_before_entry_content' ); ?>

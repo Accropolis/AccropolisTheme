@@ -1,4 +1,5 @@
-#single-post {
+#single-post,
+#single-emission {
   @include grid-row();
   margin-top: 3rem;
 
@@ -6,9 +7,92 @@
     @include breakpoint(small) {
       @include grid-column(12);
     }
+  }
+}
 
-    @include breakpoint(medium) {
-      @include grid-column(8);
-    }
+#single-emission {
+	header {
+		@include grid-row();
+		position: relative;
+		// border-bottom: solid 1px $primary-color;
+		margin-bottom: 50px;
+		h1 {
+			// @include grid-column(12);
+			border:none;
+			text-align: center;
+			font-size: rem-calc(15);
+			line-height: 50px;
+			margin-bottom: 0px;
+			padding-bottom: 0px;
+			@include breakpoint(medium) {
+				// animation : titreEmission 1.5s ease-in;
+				padding-left: 50px;
+				font-size: rem-calc(20);
+				line-height: 100px;
+				text-align: left;
+			}
+			@include breakpoint(large) {
+				padding-left: 0px;
+				line-height: 150px;
+				font-size: rem-calc(30);
+			}
+		}
+		.content__title__inner {
+			flex: none;
+			display: inline-block;
+			white-space: nowrap;
+			position: relative;
+			// opacity:0;
+		}
+		img.attachment-post-thumbnail {
+			@include mui-fade(in, $duration: 10s);
+			position: absolute;
+			top:0;
+			@include breakpoint(small) {
+				display: none;
+			}
+			@include breakpoint(medium) {
+				height: 100px;
+				right: 50px;
+				display: block;
+			}
+			@include breakpoint(large) {
+				height: 150px;
+			}
+		}
+	}
+	.entry-content {
+		// animation: logoEmission 2.5s ease-in;
+	}
+	iframe {
+		// animation: titreEmission 3s ease-in;
+		@include breakpoint(medium) {
+			min-height: 500px;
+			width:100%;
+		}
+		@include breakpoint(large) {
+			// min-height: 800px;
+			width:50%;
+			margin: 50px 25%;
+		}
+		// margin: 0;
+	}
+}
+
+@keyframes logoEmission {
+	from {
+		right : -200px;
+	}
+  to {
+		right: 0px;
+  }
+}
+
+@keyframes titreEmission {
+	from {
+		margin-left : -800px;
+	}
+  to {
+		margin-left: 0px;
   }
 }

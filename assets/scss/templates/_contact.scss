@@ -4,7 +4,14 @@
 		color:$white;
 		border-color :$white;
 	}
-	p {
-		color: $white;
+	.entry-content {
+		p {
+			@include grid-column(6);
+			@include grid-column-offset(3);
+			background-color: $white;
+			color: $primary-color;
+			padding: 20px;
+			margin: 50px auto;
+		}
 	}
 }
