@@ -28,7 +28,7 @@
 				// animation : titreEmission 1.5s ease-in;
 				padding-left: 50px;
 				font-size: rem-calc(20);
-				line-height: 100px;
+				line-height: 75px;
 				text-align: left;
 			}
 			@include breakpoint(large) {
@@ -52,7 +52,7 @@
 				display: none;
 			}
 			@include breakpoint(medium) {
-				height: 100px;
+				height: 75px;
 				right: 50px;
 				display: block;
 			}
@@ -62,7 +62,15 @@
 		}
 	}
 	.entry-content {
-		// animation: logoEmission 2.5s ease-in;
+		p {
+			margin: 50px 25px;
+			@include breakpoint(medium) {
+				margin: 50px;
+			}
+			@include breakpoint(large) {
+				margin: 75px auto 50px auto;
+			}
+		}
 	}
 	iframe {
 		// animation: titreEmission 3s ease-in;
