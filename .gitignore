@@ -10,3 +10,4 @@ assets/javascript/custom/demosite.js
 packaged/
 wpcs/
 .vscode/
+token.php
