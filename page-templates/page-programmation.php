@@ -1,19 +1,7 @@
 <?php
-error_reporting(-1);
 
-define('APPLICATION_NAME', 'Google Calendar API PHP Quickstart');
-define('CREDENTIALS_PATH', '~/.credentials/calendar-php-quickstart.json');
-define('CLIENT_SECRET_PATH', 'client_secret.json');
-// If modifying these scopes, delete your previously saved credentials
-// at ~/.credentials/calendar-php-quickstart.json;
-// TODO: Externaliser les constantes pour qu'elles n'apparaissent pas sur le GitHub
-define('GOOGLE_CLIENT_ID',"981636069101-3tiu7a9hj5qrojvv0j6vv6j8o9acvq6i.apps.googleusercontent.com");
-define('GOOGLE_CLIENT_SECRET',"hxATTSqdZ6gkYhgImgTUaGxl");
-define('GOOGLE_API_KEY',"AIzaSyDnbxsJbt2MietwVVRZORFFZF0bNRKhN78");
-define('GOOGLE_REDIRECT_URL',"127.0.0.1");
-define('GOOGLE_SCOPES',implode(' ', array(Google_Service_Calendar::CALENDAR)));
-define('GOOGLE_APPROVAL_PROMPT',"force");
-define('GOOGLE_ACCESS_TYPE',"offline");
+include ("token.php");
+
 /*
 Template Name: Page Programmation
 */
@@ -49,53 +37,7 @@ $dateFin = date('c',strtotime($dateDeb.' +15 days'));
 $client = getClient();
 $service = new Google_Service_Calendar($client);
 
-$calendarId = array();
-
-/*$args = array(
-    'post_type' => 'calendrier',
-    'order' => "ASC"
-);
-$query1 = new WP_Query( $args );
-if ( $query1->have_posts() ) {
-    // The Loop
-    while ( $query1->have_posts() ) {
-        $query1->the_post();
-        $taxonomies = get_the_taxonomies();
-        $id =format($taxonomies["calendrierid"]);
-        $calendarId[$id]=array();
-        $calendarId[$id]["logo"]=format($taxonomies["calendrierlogo"]);
-        $calendarId[$id]["caster"]=explode(" et ",format($taxonomies["calendriercaster"]));
-    }
-
-    /* Restore original Post Data
-     * NB: Because we are using new WP_Query we aren't stomping on the
-     * original $wp_query and it does not need to be reset with
-     * wp_reset_query(). We just need to set the post data back up with
-     * wp_reset_postdata().
-     */
-    /*wp_reset_postdata();
-}
-wp_reset_query();*/
-
-
-$calendarId["irldqcjmqj1fo3resdpg3clv5c@group.calendar.google.com"]=array();
-$calendarId["irldqcjmqj1fo3resdpg3clv5c@group.calendar.google.com"]["logo"]="http://127.0.0.1/wordpress/wp-content/uploads/2017/12/Logo-transparent-pleine-page-1024×490.png";
-$calendarId["irldqcjmqj1fo3resdpg3clv5c@group.calendar.google.com"]["caster"]=array("http://127.0.0.1/wordpress/wp-content/uploads/2017/12/caster-jean.jpeg");
-
-$calendarId["tfete7o5346ftpftbu84u9el2g@group.calendar.google.com"]=array();
-$calendarId["tfete7o5346ftpftbu84u9el2g@group.calendar.google.com"]["logo"]="http://127.0.0.1/wordpress/wp-content/uploads/2017/12/logo-insideaccropolis.jpeg";
-$calendarId["tfete7o5346ftpftbu84u9el2g@group.calendar.google.com"]["caster"]=array("http://127.0.0.1/wordpress/wp-content/uploads/2017/12/caster-jean.jpeg");
-
-$calendarId["vf58v4mhhj4s4vs027hdeiaiq8@group.calendar.google.com"]=array();
-$calendarId["vf58v4mhhj4s4vs027hdeiaiq8@group.calendar.google.com"]["logo"]="http://127.0.0.1/wordpress/wp-content/uploads/2017/12/LEurope-lEurope-lEurope.png";
-$calendarId["vf58v4mhhj4s4vs027hdeiaiq8@group.calendar.google.com"]["caster"]=array("http://127.0.0.1/wordpress/wp-content/uploads/2017/12/caster-jennifer.jpeg");
-
-$calendarId["ipdbt0lst9uaeii8mca070ugrc@group.calendar.google.com"]=array();
-$calendarId["ipdbt0lst9uaeii8mca070ugrc@group.calendar.google.com"]["logo"]="http://127.0.0.1/wordpress/wp-content/uploads/2017/12/Logo-transparent-pleine-page-1024×490.png";
-$calendarId["ipdbt0lst9uaeii8mca070ugrc@group.calendar.google.com"]["caster"]=array("http://127.0.0.1/wordpress/wp-content/uploads/2017/12/caster-jean.jpeg");
-
-
-var_dump($calendarId);
+$calendarId=["tv8ulmfd66rvm0usr7mhjstogc@group.calendar.google.com","4089pseg009iqs6h2fap5vv9i4@group.calendar.google.com","k2ovdv68mq92g4k3qk1fpdnft8@group.calendar.google.com","mdtvulfob62hs8p77qhm90jnuo@group.calendar.google.com","4f8asbgpflh0gneqb2oe3qaiqg@group.calendar.google.com","1ekodrv7a6he47n3g8hbf2ah5s@group.calendar.google.com","271665r41i0955is8n2c41i4is@group.calendar.google.com","jg8mvrv45tg05j9icb3qu1ttd4@group.calendar.google.com"];
 
 $optParams = array(
     'orderBy' => 'startTime',
@@ -104,9 +46,9 @@ $optParams = array(
     'timeMax' => $dateFin,
 );
 $results = array();
-foreach ($calendarId as $id=>$value)
+foreach ($calendarId as $id)
 {
-    try {
+    try{
         $results[$id] = $service->events->listEvents($id, $optParams);
     }
     catch (Google_Service_Exception $ge)
@@ -120,13 +62,11 @@ foreach($results as $id=>$calendar) {
     foreach ($calendar->getItems() as $event)
     {
         $event->calendar=$id;
-        $event->casters=$calendarId[$id]["caster"];
-        $event->logo=$calendarId[$id]["logo"];
         $listEvent[] = $event;
     }
 }
 
-usort ( $listEvent,"shortCalendar");
+usort ( $listEvent,"sortCalendar");
 get_header(); ?>
 
 <?php get_template_part( 'template-parts/featured-image' ); ?>
@@ -168,7 +108,6 @@ get_header(); ?>
                         {
                             if(isset($event->attachments))
                             {
-
                                 foreach($event->attachments as $attachment)
                                 {
                                     $path=explode("-",$attachment->title);
@@ -176,7 +115,7 @@ get_header(); ?>
                                         $event->logo = "https://drive.google.com/uc?export=view&id=".$attachment->fileId;
                                     else if($path[0] == "caster")
                                     {
-                                        if(strpos($event->casters[0],"wordpress"))
+                                        if(!isset($event->casters))
                                             $event->casters=array();
 
                                         $event->casters[] = "https://drive.google.com/uc?export=view&id=".$attachment->fileId;
@@ -187,7 +126,7 @@ get_header(); ?>
                             $dateEventDeb=new DateTime($event->start->dateTime);
                             $dateEventFin=new DateTime($event->end->dateTime);
                             echo"<div>";
-                            echo"<strong>".$dateEventDeb->format("H:i")." - ".$dateEventFin->format("H:i")."</strong><br/>".$event->getSummary()."<br/>";
+                            echo "<strong>".$dateEventDeb->format("H:i")." - ".$dateEventFin->format("H:i")."</strong><br/>".$event->getSummary()."<br/>";
                             echo"<a href='".$event->htmlLink."' target='_blank'><i class='fa fa-calendar'></i></a>";
                             echo"<a href='https://calendar.google.com/calendar/ical/".urlencode($event->calendar)."/public/basic.ics' target='_blank'><i class='fa fa-calendar'></i></a>";
                             echo"<strong>LOGO</strong><br/><img src='$event->logo' style='max-width: 20%;'></br>";
@@ -195,7 +134,7 @@ get_header(); ?>
                             foreach ($event->casters as $caster)
                                 echo"<img src='$caster'>";
                             echo"</div>";
-                            $event = array_shift ($listEvent);
+                            $event = array_shift($listEvent);
 
                         }
                     }
@@ -205,45 +144,6 @@ get_header(); ?>
                     $date->add(new DateInterval('P1D'));
                     echo "<hr>";
                 }
-
-
-                foreach($listEvent as $event)
-                {
-                    echo"<pre>";
-                    var_dump($event);
-                    echo"</pre>";
-                }
-
-
-                /*foreach ($results as $calendar)
-                    if (count($calendar->getItems()) == 0)
-                    {
-                        echo "No upcoming events found.\n";
-                    }
-                    else {
-                        echo "Upcoming events:\n";
-                        foreach ($calendar->getItems() as $key => $event) {
-                            //$service->colors->get($event->id);
-                            echo '<pre>';
-                              //var_dump($event->getAttendees());
-                              var_dump($event);
-                            echo '</pre>';
-                            //echo("<pre>".json_encode($event,JSON_PRETTY_PRINT)."</pre>");
-                            $start = $event->start->dateTime;
-                            if (empty($start)) {
-                                $start = $event->start->date;
-                            }
-                            echo("<p>".$event->getSummary()." ".$start." ".$event->htmlLink."</p>");
-                            if(isset($event->attachments))
-                            {
-
-                                foreach($event->attachments as $attachment)
-                                {
-                                    echo "<img src='https://drive.google.com/uc?export=view&id=".$attachment->fileId."' alt=''>";
-                                }
-                            }
-                        }
-                    }*/
                 ?>
                 <!-- <div id="programmation--google-sheet">
 				<iframe src="<?php //the_field('programmation-link-google') ?>"></iframe>
@@ -270,19 +170,9 @@ get_header(); ?>
 
 <?php get_footer();
 
-function shortCalendar($a,$b)
+function sortCalendar($a,$b)
 {
     $dateA= new DateTime($a->start->dateTime);
     $dateB= new DateTime($b->start->dateTime);
     return $dateA->getTimestamp() - $dateB->getTimestamp();
-}
-
-function format($s)
-{
-    $exp = (explode(":",strip_tags($s)));
-
-    if(isset($exp[2]))
-        return substr($exp[1].":".$exp[2],1,-1);
-    else
-        return substr($exp[1],1,-1);
 }
