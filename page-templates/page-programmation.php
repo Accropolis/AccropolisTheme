@@ -36,7 +36,6 @@ $dateDeb->setTime(0,0,0);
 $dateFin = new DateTime();
 $dateFin->add(DateInterval::createFromDateString('15 day'));
 $dateFin->setTime(0,0,0);
-var_dump($dateDeb,dateFin);
 
 $client = getClient();
 $service = new Google_Service_Calendar($client);
@@ -105,8 +104,6 @@ get_header(); ?>
                 $today->setTime(0,0,0);
                 for($i=0;$i<15;$i++)
                 {
-
-                    var_dump($date->diff(new DateTime($event->start->dateTime))->format("%d"));
                     if($event!=null && $date->diff(new DateTime($event->start->dateTime))->format("%d")==0)
                     {
 
@@ -159,7 +156,7 @@ get_header(); ?>
                                     echo"</div>";
                                     echo"<div class='button-colonne ".($todayWithTime->getTimestamp() > $dateEventDeb->getTimestamp() && $todayWithTime->getTimestamp() < $dateEventFin->getTimestamp() ? "live":"no-live")."'>";
 
-                                        if($todayWithTime->getTimestamp() > $dateEventDeb->getTimestamp() && $todayWithTime->getTimestamp() < $dateEventFin->getTimestamp())
+                                        if($todayWithTime->getTimestamp() > $dateEventDeb->getTimestamp()-(15*60) && $todayWithTime->getTimestamp() < $dateEventFin->getTimestamp())
                                         {
                                             echo "<div class='live-now'>live en cours</div>";
                                             echo "<a class='button btn-Twitch' href='https://www.twitch.tv/accropolis' target='_blank'><img src='".get_template_directory_uri()."/assets/images/twitch.png'/></a>";
