@@ -146,6 +146,7 @@ get_header(); ?>
                                     echo"</div>";
                                     echo"<div class='button-colonne'>"; //live class
                                         echo"<a href='".$event->htmlLink."' target='_blank'><i class='fa fa-calendar'></i></a>";
+                                        echo"<div class='live-now'>live en cours</div>";
                                         //bouton live en cours / twitch / youtube
                                     echo"</div>";
                                 $event = array_shift($listEvent);
