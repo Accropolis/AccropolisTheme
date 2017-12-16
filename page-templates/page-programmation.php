@@ -31,8 +31,12 @@ function getClient()
 
     return $client;
 }
-$dateDeb=(date('c'));
-$dateFin = date('c',strtotime($dateDeb.' +15 days'));
+$dateDeb=new DateTime();
+$dateDeb->setTime(0,0,0);
+$dateFin = new DateTime();
+$dateFin->add(DateInterval::createFromDateString('15 day'));
+$dateFin->setTime(0,0,0);
+var_dump($dateDeb,dateFin);
 
 $client = getClient();
 $service = new Google_Service_Calendar($client);
@@ -49,8 +53,8 @@ $calendarId=["tv8ulmfd66rvm0usr7mhjstogc@group.calendar.google.com",//BuvetteAN
 $optParams = array(
     'orderBy' => 'startTime',
     'singleEvents' => TRUE,
-    'timeMin' => $dateDeb,
-    'timeMax' => $dateFin,
+    'timeMin' => $dateDeb->format('c'),
+    'timeMax' => $dateFin->format('c'),
 );
 $results = array();
 foreach ($calendarId as $id)
@@ -102,6 +106,7 @@ get_header(); ?>
                 for($i=0;$i<15;$i++)
                 {
 
+                    var_dump($date->diff(new DateTime($event->start->dateTime))->format("%d"));
                     if($event!=null && $date->diff(new DateTime($event->start->dateTime))->format("%d")==0)
                     {
 
