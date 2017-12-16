@@ -143,10 +143,10 @@ gulp.task('lint', function() {
 
       var errors = file.jshint.results.map(function (data) {
         if (data.error) {
-          return "(" + data.error.line + ':' + data.error.character + ') ' + data.error.reason;
+          // return "(" + data.error.line + ':' + data.error.character + ') ' + data.error.reason;
         }
       }).join("\n");
-      return file.relative + " (" + file.jshint.results.length + " errors)\n" + errors;
+      // return file.relative + " (" + file.jshint.results.length + " errors)\n" + errors;
     }));
 });
 
