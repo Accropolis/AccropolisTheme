@@ -62,6 +62,7 @@ foreach($results as $id=>$calendar) {
     foreach ($calendar->getItems() as $event)
     {
         $event->calendar=$id;
+        $event->casters=array();
         $listEvent[] = $event;
     }
 }
@@ -115,9 +116,6 @@ get_header(); ?>
                                         $event->logo = "https://drive.google.com/uc?export=view&id=".$attachment->fileId;
                                     else if($path[0] == "caster")
                                     {
-                                        if(!isset($event->casters))
-                                            $event->casters=array();
-
                                         $event->casters[] = "https://drive.google.com/uc?export=view&id=".$attachment->fileId;
                                     }
                                 }
