@@ -46,8 +46,6 @@ $calendarId=["tv8ulmfd66rvm0usr7mhjstogc@group.calendar.google.com",
     "271665r41i0955is8n2c41i4is@group.calendar.google.com",
     "jg8mvrv45tg05j9icb3qu1ttd4@group.calendar.google.com"];
 
-
-
 $optParams = array(
     'orderBy' => 'startTime',
     'singleEvents' => TRUE,
@@ -103,19 +101,19 @@ get_header(); ?>
                 for($i=0;$i<15;$i++)
                 {
 
-                    $diff = $date->diff($today)->format("%d");
-                    switch ($diff)
-                    {
-                        case 0:echo "Aujourd'hui";break;
-                        case 1:echo "Demain";break;
-                        default: echo"dans ".$diff." jours<br/>";
-                    }
-
                     if($event!=null && $date->diff(new DateTime($event->start->dateTime))->format("%d")==0)
                     {
 
                         echo"<div class='programmation--emission-event ".($date->diff($today)->format("%d")==0?"programmation--emission-event-today":"")."'>";
-                            while($event!=null && $date->diff(new DateTime($event->start->dateTime))->format("%d")==0)
+                        $diff = $date->diff($today)->format("%d");
+                        switch ($diff)
+                        {
+                            case 0:echo "<aside class='event-aside'>Aujourd'hui</aside>";break;
+                            case 1:echo "<aside class='event-aside'>Demain</aside>";break;
+                            default: echo"<aside class='event-aside'>dans ".$diff." jours</aside>";
+                        }
+
+                        while($event!=null && $date->diff(new DateTime($event->start->dateTime))->format("%d")==0)
                             {
                                 if(isset($event->attachments))
                                 {
@@ -148,7 +146,7 @@ get_header(); ?>
                         echo "</div>";
                     }
                     else
-                        echo "<div class='programmation--emission-no-event ".($date->diff($today)->format("%d")==0?"programmation--emission-no-event-today":"")."'>".$date->format("Y-m-d")."</div>";
+                        echo "<div class='programmation--emission-no-event ".($date->diff($today)->format("%d")==0?"programmation--emission-no-event-today":"")."'>".($date->diff($today)->format("%d")==0?"<aside class='event-aside'>Aujourd'hui</aside>":"").$date->format("Y-m-d")."</div>";
 
                     $date->add(new DateInterval('P1D'));
                 }
