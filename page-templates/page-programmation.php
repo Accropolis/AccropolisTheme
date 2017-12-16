@@ -37,7 +37,16 @@ $dateFin = date('c',strtotime($dateDeb.' +15 days'));
 $client = getClient();
 $service = new Google_Service_Calendar($client);
 
-$calendarId=["tv8ulmfd66rvm0usr7mhjstogc@group.calendar.google.com","4089pseg009iqs6h2fap5vv9i4@group.calendar.google.com","k2ovdv68mq92g4k3qk1fpdnft8@group.calendar.google.com","mdtvulfob62hs8p77qhm90jnuo@group.calendar.google.com","4f8asbgpflh0gneqb2oe3qaiqg@group.calendar.google.com","1ekodrv7a6he47n3g8hbf2ah5s@group.calendar.google.com","271665r41i0955is8n2c41i4is@group.calendar.google.com","jg8mvrv45tg05j9icb3qu1ttd4@group.calendar.google.com"];
+$calendarId=["tv8ulmfd66rvm0usr7mhjstogc@group.calendar.google.com",
+    "4089pseg009iqs6h2fap5vv9i4@group.calendar.google.com",
+    "k2ovdv68mq92g4k3qk1fpdnft8@group.calendar.google.com",
+    "mdtvulfob62hs8p77qhm90jnuo@group.calendar.google.com",
+    "4f8asbgpflh0gneqb2oe3qaiqg@group.calendar.google.com",
+    "1ekodrv7a6he47n3g8hbf2ah5s@group.calendar.google.com",
+    "271665r41i0955is8n2c41i4is@group.calendar.google.com",
+    "jg8mvrv45tg05j9icb3qu1ttd4@group.calendar.google.com"];
+
+
 
 $optParams = array(
     'orderBy' => 'startTime',
@@ -93,54 +102,55 @@ get_header(); ?>
                 $today->setTime(0,0,0);
                 for($i=0;$i<15;$i++)
                 {
-                    echo $date->format("Y-m-d")."<br/>";
+
+                    $diff = $date->diff($today)->format("%d");
+                    switch ($diff)
+                    {
+                        case 0:echo "Aujourd'hui";break;
+                        case 1:echo "Demain";break;
+                        default: echo"dans ".$diff." jours<br/>";
+                    }
 
                     if($event!=null && $date->diff(new DateTime($event->start->dateTime))->format("%d")==0)
                     {
-                        $diff = $date->diff($today)->format("%d");
-                        switch ($diff)
-                        {
-                            case 0:echo "Aujourd'hui";break;
-                            case 1:echo "Demain";break;
-                            default: echo"dans ".$diff." jours<br/>";
-                        }
 
-                        while($event!=null && $date->diff(new DateTime($event->start->dateTime))->format("%d")==0)
-                        {
-                            if(isset($event->attachments))
+                        echo"<div class='programmation--emission-event ".($date->diff($today)->format("%d")==0?"programmation--emission-event-today":"")."'>";
+                            while($event!=null && $date->diff(new DateTime($event->start->dateTime))->format("%d")==0)
                             {
-                                foreach($event->attachments as $attachment)
+                                if(isset($event->attachments))
                                 {
-                                    $path=explode("-",$attachment->title);
-                                    if($path[0] == "logo")
-                                        $event->logo = "https://drive.google.com/uc?export=view&id=".$attachment->fileId;
-                                    else if($path[0] == "caster")
+                                    foreach($event->attachments as $attachment)
                                     {
-                                        $event->casters[] = "https://drive.google.com/uc?export=view&id=".$attachment->fileId;
+                                        $path=explode("-",$attachment->title);
+                                        if($path[0] == "logo")
+                                            $event->logo = "https://drive.google.com/uc?export=view&id=".$attachment->fileId;
+                                        else if($path[0] == "caster")
+                                        {
+                                            $event->casters[] = "https://drive.google.com/uc?export=view&id=".$attachment->fileId;
+                                        }
                                     }
                                 }
+
+                                echo"<div class='event'>";
+                                    $dateEventDeb=new DateTime($event->start->dateTime);
+                                    $dateEventFin=new DateTime($event->end->dateTime);
+                                    echo "<strong>".$dateEventDeb->format("H:i")." - ".$dateEventFin->format("H:i")."</strong><br/>".$event->getSummary()."<br/>";
+                                    echo"<a href='".$event->htmlLink."' target='_blank'><i class='fa fa-calendar'></i></a>";
+                                    echo"<a href='https://calendar.google.com/calendar/ical/".urlencode($event->calendar)."/public/basic.ics' target='_blank'><i class='fa fa-calendar'></i></a>";
+                                    echo"<strong>LOGO</strong><br/><img src='$event->logo' style='max-width: 20%;'></br>";
+                                    echo"<strong>CASTER</strong><br/>";
+                                    foreach ($event->casters as $caster)
+                                        echo"<img src='$caster'>";
+
+                                    $event = array_shift($listEvent);
+                                echo "</div>";
                             }
-
-                            $dateEventDeb=new DateTime($event->start->dateTime);
-                            $dateEventFin=new DateTime($event->end->dateTime);
-                            echo"<div>";
-                            echo "<strong>".$dateEventDeb->format("H:i")." - ".$dateEventFin->format("H:i")."</strong><br/>".$event->getSummary()."<br/>";
-                            echo"<a href='".$event->htmlLink."' target='_blank'><i class='fa fa-calendar'></i></a>";
-                            echo"<a href='https://calendar.google.com/calendar/ical/".urlencode($event->calendar)."/public/basic.ics' target='_blank'><i class='fa fa-calendar'></i></a>";
-                            echo"<strong>LOGO</strong><br/><img src='$event->logo' style='max-width: 20%;'></br>";
-                            echo"<strong>CASTER</strong><br/>";
-                            foreach ($event->casters as $caster)
-                                echo"<img src='$caster'>";
-                            echo"</div>";
-                            $event = array_shift($listEvent);
-
-                        }
+                        echo "</div>";
                     }
                     else
-                        echo "aucun evenement</br>";
+                        echo "<div class='programmation--emission-no-event ".($date->diff($today)->format("%d")==0?"programmation--emission-no-event-today":"")."'>".$date->format("Y-m-d")."</div>";
 
                     $date->add(new DateInterval('P1D'));
-                    echo "<hr>";
                 }
                 ?>
                 <!-- <div id="programmation--google-sheet">

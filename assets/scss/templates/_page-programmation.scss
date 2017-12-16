@@ -82,3 +82,30 @@ a.programmation--emission {
 		transition: 0.4s linear;
 	}
 }
+
+
+.programmation--emission-no-event
+{
+	background-color: $light-gray;
+	color: $secondary-color;
+	font-weight: bold;
+	margin-bottom: 10px;
+	padding: 20px;
+}
+.programmation--emission-no-event-today
+{
+	color: $primary-color;
+}
+
+.programmation--emission-event
+{
+	background-color: rgba($primary-color, .25);
+	color: $white;
+	margin-bottom: 10px;
+	padding: 20px;
+}
+
+.programmation--emission-event-today
+{
+	background-color: $primary-color;
+}
