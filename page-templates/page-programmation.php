@@ -37,14 +37,14 @@ $dateFin = date('c',strtotime($dateDeb.' +15 days'));
 $client = getClient();
 $service = new Google_Service_Calendar($client);
 
-$calendarId=["tv8ulmfd66rvm0usr7mhjstogc@group.calendar.google.com",
-    "4089pseg009iqs6h2fap5vv9i4@group.calendar.google.com",
-    "k2ovdv68mq92g4k3qk1fpdnft8@group.calendar.google.com",
-    "mdtvulfob62hs8p77qhm90jnuo@group.calendar.google.com",
-    "4f8asbgpflh0gneqb2oe3qaiqg@group.calendar.google.com",
-    "1ekodrv7a6he47n3g8hbf2ah5s@group.calendar.google.com",
-    "271665r41i0955is8n2c41i4is@group.calendar.google.com",
-    "jg8mvrv45tg05j9icb3qu1ttd4@group.calendar.google.com"];
+$calendarId=["tv8ulmfd66rvm0usr7mhjstogc@group.calendar.google.com",//BuvetteAN
+    "4089pseg009iqs6h2fap5vv9i4@group.calendar.google.com",//DirectAN
+    "k2ovdv68mq92g4k3qk1fpdnft8@group.calendar.google.com",//Divers
+    "mdtvulfob62hs8p77qhm90jnuo@group.calendar.google.com",//L'Europe l'Europe l'Europe
+    "4f8asbgpflh0gneqb2oe3qaiqg@group.calendar.google.com",//La communauté de l'ONU
+    "1ekodrv7a6he47n3g8hbf2ah5s@group.calendar.google.com",//La Libre Antenne
+    "271665r41i0955is8n2c41i4is@group.calendar.google.com",//Ô Canada
+    "jg8mvrv45tg05j9icb3qu1ttd4@group.calendar.google.com"];//QAG Commentées
 
 $optParams = array(
     'orderBy' => 'startTime',
@@ -97,6 +97,7 @@ get_header(); ?>
                 $date->setTime(0,0,0);
                 $event = array_shift ($listEvent);
                 $today=new DateTime();
+                $todayWithTime=new DateTime();
                 $today->setTime(0,0,0);
                 for($i=0;$i<15;$i++)
                 {
@@ -128,13 +129,20 @@ get_header(); ?>
                                         }
                                     }
                                 }
+                                $dateEventDeb=new DateTime($event->start->dateTime);
+                                $dateEventFin=new DateTime($event->end->dateTime);
+                                echo"<article class='event ";
+                                    if($todayWithTime->getTimestamp() > $dateEventDeb->getTimestamp() && $todayWithTime->getTimestamp() < $dateEventFin->getTimestamp())
+                                        echo "now";
+                                    else if($todayWithTime->getTimestamp() > $dateEventDeb->getTimestamp())
+                                        echo "after";
+                                    else
+                                        echo "before";
+                                echo "'>";
 
-                                echo"<article class='event'>";//if class past / en cours / a venir
-                                    $dateEventDeb=new DateTime($event->start->dateTime);
-                                    $dateEventFin=new DateTime($event->end->dateTime);
                                     echo"<div class='logo-colonne'>";
                                         echo"<a href='https://calendar.google.com/calendar/ical/".urlencode($event->calendar)."/public/basic.ics' target='_blank'><i class='fa fa-calendar'></i></a>";
-                                        echo"div class='logo'><img src='$event->logo' style='max-width: 20%;'></div>";
+                                        echo"<div class='logo'> <img src='$event->logo' style='max-width: 20%;'></div>";
                                     echo"</div>";
                                     echo"<div class='text-colonne'>";
                                     echo"<p class='horaire'>".$dateEventDeb->format("H:i")." - ".$dateEventFin->format("H:i")."</p>";
@@ -144,11 +152,19 @@ get_header(); ?>
                                             echo"<div class='img-colonne'><img src='$caster'></div>";
                                     echo"</div>";
                                     echo"</div>";
-                                    echo"<div class='button-colonne'>"; //live class
-                                        echo"<a href='".$event->htmlLink."' target='_blank'><i class='fa fa-calendar'></i></a>";
-                                        echo"<div class='live-now'>live en cours</div>";
-                                        //bouton live en cours / twitch / youtube
-                                    echo"</div>";
+                                    echo"<div class='button-colonne ".($todayWithTime->getTimestamp() > $dateEventDeb->getTimestamp() && $todayWithTime->getTimestamp() < $dateEventFin->getTimestamp() ? "live":"no-live")."'>";
+
+                                        if($todayWithTime->getTimestamp() > $dateEventDeb->getTimestamp() && $todayWithTime->getTimestamp() < $dateEventFin->getTimestamp())
+                                        {
+                                            echo "<div class='live-now'>live en cours</div>";
+                                            echo "<a class='button btn-Twitch' href='https://www.twitch.tv/accropolis' target='_blank'><img src='".get_template_directory_uri()."/assets/images/twitch.png'/></a>";
+                                            echo "<a class='button btn-YouTube' href='https://www.youtube.com/laviepublique/live' target='_blank'><img src='".get_template_directory_uri()."/assets/images/youtube.png'/></a>";
+                                        }
+                                        else
+                                        //bouton live en cours / twitch / youtub
+                                            echo"<a href='".$event->htmlLink."' target='_blank'><i class='fa fa-calendar'></i></a>";
+
+                                echo"</div>";
                                 $event = array_shift($listEvent);
                                 echo "</article>";
                             }
