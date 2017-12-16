@@ -129,19 +129,27 @@ get_header(); ?>
                                     }
                                 }
 
-                                echo"<div class='event'>";
+                                echo"<article class='event'>";//if class past / en cours / a venir
                                     $dateEventDeb=new DateTime($event->start->dateTime);
                                     $dateEventFin=new DateTime($event->end->dateTime);
-                                    echo "<strong>".$dateEventDeb->format("H:i")." - ".$dateEventFin->format("H:i")."</strong><br/>".$event->getSummary()."<br/>";
-                                    echo"<a href='".$event->htmlLink."' target='_blank'><i class='fa fa-calendar'></i></a>";
-                                    echo"<a href='https://calendar.google.com/calendar/ical/".urlencode($event->calendar)."/public/basic.ics' target='_blank'><i class='fa fa-calendar'></i></a>";
-                                    echo"<strong>LOGO</strong><br/><img src='$event->logo' style='max-width: 20%;'></br>";
-                                    echo"<strong>CASTER</strong><br/>";
-                                    foreach ($event->casters as $caster)
-                                        echo"<img src='$caster'>";
-
-                                    $event = array_shift($listEvent);
-                                echo "</div>";
+                                    echo"<div class='logo-colonne'>";
+                                        echo"<a href='https://calendar.google.com/calendar/ical/".urlencode($event->calendar)."/public/basic.ics' target='_blank'><i class='fa fa-calendar'></i></a>";
+                                        echo"div class='logo'><img src='$event->logo' style='max-width: 20%;'></div>";
+                                    echo"</div>";
+                                    echo"<div class='text-colonne'>";
+                                    echo"<p class='horaire'>".$dateEventDeb->format("H:i")." - ".$dateEventFin->format("H:i")."</p>";
+                                    echo"<h2>".$event->getSummary()."<h2>";
+                                    echo"<div class='caster-colonne'>";
+                                        foreach ($event->casters as $caster)
+                                            echo"<div class='img-colonne'><img src='$caster'></div>";
+                                    echo"</div>";
+                                    echo"</div>";
+                                    echo"<div class='button-colonne'>"; //live class
+                                        echo"<a href='".$event->htmlLink."' target='_blank'><i class='fa fa-calendar'></i></a>";
+                                        //bouton live en cours / twitch / youtube
+                                    echo"</div>";
+                                $event = array_shift($listEvent);
+                                echo "</article>";
                             }
                         echo "</div>";
                     }
@@ -161,7 +169,7 @@ get_header(); ?>
                 <div class="entry-content">
                     <?php the_content(); ?>
                 </div>
-                <section id="programmation--emission-wrapper" class="row">
+                <section id="programmation--emission-colonne" class="row">
                     <?php do_action('list_emission') ?>
                 </section>
             </article>
