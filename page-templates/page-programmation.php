@@ -144,11 +144,11 @@ get_header(); ?>
 
                                     echo"<div class='logo-colonne'>";
                                         echo"<a href='https://calendar.google.com/calendar/ical/".urlencode($event->calendar)."/public/basic.ics' target='_blank'><i class='fa fa-calendar'></i></a>";
-                                        echo"<div class='logo'> <img src='$event->logo' style='max-width: 20%;'></div>";
+                                        echo"<div class='logo'> <img src='$event->logo'></div>";
                                     echo"</div>";
                                     echo"<div class='text-colonne'>";
                                     echo"<p class='horaire'>".$dateEventDeb->format("H:i")." - ".$dateEventFin->format("H:i")."</p>";
-                                    echo"<h2>".$event->getSummary()."<h2>";
+                                    echo"<h2>".$event->getSummary()."</h2>";
                                     echo"<div class='caster-colonne'>";
                                         foreach ($event->casters as $caster)
                                             echo"<div class='img-colonne'><img src='$caster'></div>";
