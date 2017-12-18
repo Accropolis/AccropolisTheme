@@ -115,7 +115,7 @@ get_header(); ?>
                             case 1:echo "<aside class='event-aside'>Demain</aside>";break;
                             default: echo"<aside class='event-aside'>dans ".$diff." jours</aside>";
                         }
-
+                        echo "<div class='date' data-date='".$date->format("Ymd")."'></div>";
                         while($event!=null && $date->diff(new DateTime($event->start->dateTime))->format("%d")==0)
                             {
                                 if(isset($event->attachments))
