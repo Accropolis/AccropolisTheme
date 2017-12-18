@@ -173,7 +173,7 @@ get_header(); ?>
                         echo "</div>";
                     }
                     else
-                        echo "<div class='programmation--emission-no-event ".($date->diff($today)->format("%d")==0?"programmation--emission-no-event-today":"")."'>".($date->diff($today)->format("%d")==0?"<aside class='event-aside'>Aujourd'hui</aside>":"").$date->format("Y-m-d")."</div>";
+                        echo "<div class='programmation--emission-no-event date ".($date->diff($today)->format("%d")==0?"programmation--emission-no-event-today":"")." date' data-date='".$date->format("Ymd")."'>".($date->diff($today)->format("%d")==0?"<aside class='event-aside'>Aujourd'hui</aside>":"")."</div>";
 
                     $date->add(new DateInterval('P1D'));
                 }
@@ -197,15 +197,17 @@ get_header(); ?>
         <?php do_action( 'foundationpress_after_content' ); ?>
 
     </div>
+
 <script>
-    console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
+    $(function(){$(".date").each(function () {
+        $(this.append(moment($(this).attr("data-date")).format('dddd LL')));
+    });});
 </script>
 
 <?php get_footer();
-
 function sortCalendar($a,$b)
 {
     $dateA= new DateTime($a->start->dateTime);
     $dateB= new DateTime($b->start->dateTime);
     return $dateA->getTimestamp() - $dateB->getTimestamp();
-}
+}?>
