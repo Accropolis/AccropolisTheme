@@ -73,6 +73,7 @@ foreach($results as $id=>$calendar) {
     {
         $event->calendar=$id;
         $event->casters=array();
+        $event->logo=get_template_directory_uri()."/assets/images/logos/accropodefault.png";
         $listEvent[] = $event;
     }
 }
