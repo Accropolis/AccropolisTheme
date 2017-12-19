@@ -40,14 +40,15 @@ $dateFin->setTime(0,0,0);
 $client = getClient();
 $service = new Google_Service_Calendar($client);
 
-$calendarId=["tv8ulmfd66rvm0usr7mhjstogc@group.calendar.google.com",//BuvetteAN
-    "4089pseg009iqs6h2fap5vv9i4@group.calendar.google.com",//DirectAN
-    "k2ovdv68mq92g4k3qk1fpdnft8@group.calendar.google.com",//Divers
-    "mdtvulfob62hs8p77qhm90jnuo@group.calendar.google.com",//L'Europe l'Europe l'Europe
-    "4f8asbgpflh0gneqb2oe3qaiqg@group.calendar.google.com",//La communauté de l'ONU
-    "1ekodrv7a6he47n3g8hbf2ah5s@group.calendar.google.com",//La Libre Antenne
-    "271665r41i0955is8n2c41i4is@group.calendar.google.com",//Ô Canada
-    "jg8mvrv45tg05j9icb3qu1ttd4@group.calendar.google.com"];//QAG Commentées
+
+$calendarId=["tv8ulmfd66rvm0usr7mhjstogc@group.calendar.google.com"=>["logo"=>"accropodefault.png","class"=>"BuvetteAN"],//BuvetteAN
+    "4089pseg009iqs6h2fap5vv9i4@group.calendar.google.com"=>["logo"=>"logo-directan.png","class"=>"directan"],//DirectAN
+    "k2ovdv68mq92g4k3qk1fpdnft8@group.calendar.google.com"=>["logo"=>"accropodefault.png","class"=>"divers"],//Divers
+    "mdtvulfob62hs8p77qhm90jnuo@group.calendar.google.com"=>["logo"=>"logo-leurope.png","class"=>"leurope"],//L'Europe l'Europe l'Europe
+    "4f8asbgpflh0gneqb2oe3qaiqg@group.calendar.google.com"=>["logo"=>"logo-onu.png","class"=>"onu"],//La communauté de l'ONU
+    "1ekodrv7a6he47n3g8hbf2ah5s@group.calendar.google.com"=>["logo"=>"logo-libreantenne.png","class"=>"libreantenne"],//La Libre Antenne
+    "271665r41i0955is8n2c41i4is@group.calendar.google.com"=>["logo"=>"logo-ocanada.png","class"=>"ocanada"],//Ô Canada
+    "jg8mvrv45tg05j9icb3qu1ttd4@group.calendar.google.com"=>["logo"=>"logo-directan.png","class"=>"qag"],];//QAG Commentées
 
 $optParams = array(
     'orderBy' => 'startTime',
@@ -56,7 +57,7 @@ $optParams = array(
     'timeMax' => $dateFin->format('c'),
 );
 $results = array();
-foreach ($calendarId as $id)
+foreach ($calendarId as $id=>$value)
 {
     try{
         $results[$id] = $service->events->listEvents($id, $optParams);
@@ -73,7 +74,8 @@ foreach($results as $id=>$calendar) {
     {
         $event->calendar=$id;
         $event->casters=array();
-        $event->logo=get_template_directory_uri()."/assets/images/logos/accropodefault.png";
+        $event->logo=get_template_directory_uri()."/assets/images/logos/".$calendarId[$id]["logo"];
+        $event->class=$calendarId[$id]["class"];
         $listEvent[] = $event;
     }
 }
@@ -134,7 +136,7 @@ get_header(); ?>
                                 }
                                 $dateEventDeb=new DateTime($event->start->dateTime);
                                 $dateEventFin=new DateTime($event->end->dateTime);
-                                echo"<article class='event ";
+                                echo"<article class='event ".$event->class." ";
                                     if($todayWithTime->getTimestamp() > $dateEventDeb->getTimestamp() && $todayWithTime->getTimestamp() < $dateEventFin->getTimestamp())
                                         echo "now";
                                     else if($todayWithTime->getTimestamp() > $dateEventDeb->getTimestamp())
@@ -144,7 +146,7 @@ get_header(); ?>
                                 echo "'>";
 
                                     echo"<div class='logo-colonne'>";
-                                        echo"<a href='https://calendar.google.com/calendar/ical/".urlencode($event->calendar)."/public/basic.ics' target='_blank'><i class='fa fa-calendar'></i></a>";
+                                        //echo"<a href='https://calendar.google.com/calendar/ical/".urlencode($event->calendar)."/public/basic.ics' target='_blank'><i class='fa fa-calendar'></i></a>";
                                         echo"<div class='logo'> <img src='$event->logo'></div>";
                                     echo"</div>";
                                     echo"<div class='text-colonne'>";
