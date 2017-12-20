@@ -154,7 +154,7 @@ get_header(); ?>
                                     echo"<h2>".$event->getSummary()."</h2>";
                                     echo"<div class='caster-colonne'>";
                                         foreach ($event->casters as $caster)
-                                            echo"<div class='img-colonne'><img src='$caster'></div>";
+                                            echo"<div class='img-colonne'><div class='caster-wrapper'><img src='$caster'></div></div>";
                                     echo"</div>";
                                     echo"</div>";
                                     echo"<div class='button-colonne ".($todayWithTime->getTimestamp() > $dateEventDeb->getTimestamp() && $todayWithTime->getTimestamp() < $dateEventFin->getTimestamp() ? "live":"no-live")."'>";

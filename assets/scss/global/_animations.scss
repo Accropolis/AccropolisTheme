@@ -1,0 +1,11 @@
+@keyframes bounce {
+	0%, 20%, 50%, 80%, 100% {
+    transform: translate(-50%,-50%)
+  }
+	40% {
+    transform: translate(-50%,-75%)
+  }
+	60% {
+    transform: translate(-50%,-62.5%)
+  }
+}

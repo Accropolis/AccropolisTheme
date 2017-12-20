@@ -18,6 +18,7 @@
 @import "global/wp-admin"; // Fix issues with wp-admin bar positioning
 @import "global/wp-overrides"; // Override the default WordPress styling for some elements
 @import "global/accessibility";
+@import "global/animations"; // Animations
 
 // Third-party libraries
 @import 'font-awesome';
