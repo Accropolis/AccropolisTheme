@@ -173,7 +173,7 @@
 		align-content: stretch;
 		&:hover {
 			.text-colonne .caster-colonne {
-				top: 90px;
+				top: 90%;
 				opacity: 1;
 			}
 			.logo-colonne a {
@@ -251,6 +251,7 @@
 			display: flex;
 			flex-direction: column;
 			position: relative;
+			justify-content: center;
 			width: 100%;
 			p,h2 {
 				margin: 0;
@@ -259,7 +260,6 @@
 				font-size: 30px;
 				font-weight: bold;
 				line-height: 40px;
-				margin-top: 10px;
 			}
 			h2 {
 				font-size: 20px;
@@ -308,26 +308,92 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			a {
-				display: block;
-				width: 100px;
-				height: 100px;
-				background: white;
-				border-radius: 50%;
-				-webkit-backface-visibility: hidden;
-				position: relative;
-				&:hover i {
-			    animation-name: bounce;
-			    animation-duration: 1s;
-					animation-iteration-count: infinite;
-				}
-				i {
-					position: absolute;
-					top: 50%; left: 50%;
-					transform: translate(-50%,-50%);
-					font-size: 40px;
-					transition: .1s ease-in-out;
+			&:not(.live) {
+				a {
+					display: block;
+					width: 100px;
+					height: 100px;
+					background: white;
+					border-radius: 50%;
 					-webkit-backface-visibility: hidden;
+					position: relative;
+					&:hover i {
+						animation-name: bounce;
+						animation-duration: 1s;
+						animation-iteration-count: infinite;
+					}
+					i {
+						position: absolute;
+						top: 50%; left: 50%;
+						transform: translate(-50%,-50%);
+						font-size: 40px;
+						transition: .1s ease-in-out;
+						-webkit-backface-visibility: hidden;
+					}
+				}
+			}
+			&.live {
+				flex-direction: column;
+				.live-now,a {
+					margin-bottom: 10px;
+				}
+				.live-now {
+					background: white;
+					color: red;
+					font-size: 12px;
+					text-transform: uppercase;
+					font-weight: bold;
+					padding: 10px 20px 10px 40px;
+					position: relative;
+					border-radius: 20px;
+					overflow: hidden;
+					&::before {
+						width: 10px;
+						height: 10px;
+						content:"";
+						background: red;
+						display: block;
+						border-radius: 50%;
+						position: absolute;
+						left: 20px;
+						top: 50%;
+						transform: translateY(-50%);
+						z-index: 1;
+					}
+					&::after {
+						width: 14px;
+						height: 14px;
+						content:"";
+						border: solid 1px red;
+						display: block;
+						border-radius: 50%;
+						position: absolute;
+						left: 18px;
+						top: 50%;
+						transform: translateY(-50%) scale(5);
+						z-index: 0;
+						animation: live 2s infinite;
+					}
+				}
+				a {
+					height: 50px;
+					width: 150px;
+					padding: 0;
+					overflow: hidden;
+					border-radius: 10px;
+					img {
+						max-height: 100%;
+						transform: scale(2);
+					}
+					&.btn-Twitch {
+						background-color: $twitch;
+					}
+					&.btn-YouTube {
+						background-color: $white;
+					}
+					&:hover img {
+						animation: bounceScale 1s infinite;
+					}
 				}
 			}
 		}
