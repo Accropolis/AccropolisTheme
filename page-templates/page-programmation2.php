@@ -110,7 +110,7 @@ get_header(); ?>
                     if($event!=null && $date->diff(new DateTime($event->start->dateTime))->format("%d")==0)
                     {
 
-                        echo"<div class='programmation--emission-event".($date->diff($today)->format("%d")==0?" programmation--emission-event-today":"")."'>";
+                        echo"<div class='programmation--emission-event ".($date->diff($today)->format("%d")==0?"programmation--emission-event-today":"")."'>";
                         $diff = $date->diff($today)->format("%d");
                         switch ($diff)
                         {
@@ -163,7 +163,7 @@ get_header(); ?>
                                         {
                                             echo "<div class='live-now'>live en cours</div>";
                                             echo "<a class='button btn-Twitch' href='https://www.twitch.tv/accropolis' target='_blank'><img src='".get_template_directory_uri()."/assets/images/twitch.png'/></a>";
-                                            echo "<a class='button btn-YouTube' href='https://www.youtube.com/laviepublique/live' target='_blank'><img src='".get_template_directory_uri()."/assets/images/youtube.png'/></a>";
+                                            // echo "<a class='button btn-YouTube' href='https://www.youtube.com/laviepublique/live' target='_blank'><img src='".get_template_directory_uri()."/assets/images/youtube.png'/></a>";
                                         }
                                         else
                                         //bouton live en cours / twitch / youtub

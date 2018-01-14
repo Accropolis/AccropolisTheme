@@ -15,7 +15,35 @@
 // 	}
 // }
 
-.page-template-page-programmation {
+.page-template-page-programmation2 {
+
+	$breakpointMobile: 800px;
+
+	.main-content > div {
+		@media screen and (max-width: 1350px) {
+			margin: 0 10px 15px 75px;
+		}
+		@media screen and (max-width: $breakpointMobile) {
+			margin: 0 0 15px 0;
+			.date {
+				text-align: center;
+				margin: 10px 0 !important;
+			}
+			p.horaire {
+				font-size: 20px !important;
+			}
+			h2 {
+				font-size: 16px !important;
+			}
+			.logo-colonne {
+				left: 0px !important;
+			}
+			.text-colonne {
+				text-align: center;
+				margin: 10px 0;
+			}
+		}
+	}
 
 	#programmation--emision-wrapper {
 		@include grid-row();
@@ -147,6 +175,9 @@
 					top: 50%;
 					left: calc(100% + 10px);
 					transform: translateY(-50%);
+				}
+				@media screen and (max-width: 1700px) {
+					display: none;
 				}
 			}
 		}
@@ -394,13 +425,16 @@
 					}
 				}
 				a {
-					height: 50px;
+					height: 100px;
 					width: 150px;
 					padding: 0;
 					overflow: hidden;
 					border-radius: 10px;
+					display: flex;
+					justify-content: center;
+					align-items: center;
 					img {
-						max-height: 100%;
+						max-height: 50px;
 						transform: scale(2);
 					}
 					&.btn-Twitch {
@@ -491,6 +525,11 @@
 			.button-colonne.no-live a {
 				color: $divers;
 			}
+		}
+		@media screen and (max-width: $breakpointMobile) {
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
 		}
 	}
 
