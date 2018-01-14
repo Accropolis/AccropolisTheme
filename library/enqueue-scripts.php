@@ -27,6 +27,8 @@ if ( ! function_exists( 'foundationpress_scripts' ) ) :
 	wp_enqueue_script( 'foundation', get_template_directory_uri() . '/assets/javascript/foundation.js', array('jquery'), '2.9.0', true );
 	wp_enqueue_script( 'youtubevds', get_template_directory_uri() . '/assets/javascript/youtubevds.js', array('jquery'), '2.9.0', true );
 	wp_enqueue_script( 'tweenmax', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js', array('jquery'), '2.9.0', true );
+	wp_enqueue_script( 'moment', 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js', array('jquery'), '2.9.0', true );
+    wp_enqueue_script( 'moment_local', 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/locale/fr.js', array('jquery'), '2.9.0', true );
 
 	// Add the comment-reply library on pages where it is necessary
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {

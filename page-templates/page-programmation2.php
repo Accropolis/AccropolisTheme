@@ -203,7 +203,7 @@ get_header(); ?>
 
 <script>
     $(function(){$(".date").each(function () {
-        moment.locale("FR");
+        moment.locale("fr");
         $(this.append(moment($(this).attr("data-date")).format('dddd LL')));
     });});
 </script>
