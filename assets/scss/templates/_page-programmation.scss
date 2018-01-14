@@ -375,6 +375,13 @@
 						font-size: 40px;
 						transition: .1s ease-in-out;
 						-webkit-backface-visibility: hidden;
+						&::after {
+							content:"+";
+							position: absolute;
+							font-weight: bold;
+							transform: scale(.5);
+							top: -18px; right: -18px;
+						}
 					}
 				}
 			}
