@@ -3,7 +3,7 @@
 include ("token.php");
 
 /*
-Template Name: Page Programmation
+Template Name: Page Programmation v2
 */
 /**
  * Expands the home directory alias '~' to the full path.
