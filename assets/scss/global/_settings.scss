@@ -46,6 +46,7 @@
 // 1. Global
 // ---------
 
+// Couleurs
 $global-font-size: 100%;
 $global-width: rem-calc(1200);
 $global-lineheight: 1.5;
@@ -62,9 +63,19 @@ $dark-gray: #8a8a8a;
 $black: #0a0a0a;
 $white: #fefefe;
 $outer-space: #232323;
+// Réseaux Sociaux
 $twitch: #7d5bbe;
 $discord: #7289da;
 $youtube: #cd201f;
+// Emissions
+$directan: #ee57a8;
+$divers: #cd201f;
+$leurope: #0c95f5;
+$onu: #5e94e5;
+$libreantenne: #ee57a8;
+$ocanada: #ff0000;
+$qag: #ee57a8;
+// Fin couleurs ----------------------------------------
 $body-background: $white;
 $body-font-color: $black;
 $body-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;

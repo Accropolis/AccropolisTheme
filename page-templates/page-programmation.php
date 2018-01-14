@@ -110,7 +110,7 @@ get_header(); ?>
                     if($event!=null && $date->diff(new DateTime($event->start->dateTime))->format("%d")==0)
                     {
 
-                        echo"<div class='programmation--emission-event ".($date->diff($today)->format("%d")==0?"programmation--emission-event-today":"")."'>";
+                        echo"<div class='programmation--emission-event".($date->diff($today)->format("%d")==0?" programmation--emission-event-today":"")."'>";
                         $diff = $date->diff($today)->format("%d");
                         switch ($diff)
                         {

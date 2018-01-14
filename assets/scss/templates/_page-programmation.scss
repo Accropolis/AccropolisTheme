@@ -141,7 +141,7 @@
 					content:"";
 					display: block;
 					height: 1px;
-					width: 100%;
+					width: 90px;
 					background: $primary-color;
 					position: absolute;
 					top: 50%;
@@ -171,15 +171,24 @@
 		transition: .225s ease-in-out;
 		padding: 10px 0;
 		align-content: stretch;
+		margin-bottom: 10px;
+		&.now {
+			background-color: rgba(white,0.5);
+		}
 		&:hover {
 			.text-colonne .caster-colonne {
 				top: 90%;
 				opacity: 1;
 			}
-			.logo-colonne a {
-				left: -50px;
-				opacity: 1;
-				pointer-events:auto;
+			.logo-colonne {
+				.logo img {
+					transform: scale(1.1);
+				}
+				a {
+					left: -50px;
+					opacity: 1;
+					pointer-events:auto;
+				}
 			}
 		}
 		&.after {
@@ -245,6 +254,11 @@
 				border: 2px solid $primary-color;
 				display: flex;
 				align-items: center;
+				img {
+					transition: .4s ease-in-out;
+					transform: scale(1);
+					-webkit-backface-visibility: hidden;
+				}
 			}
 		}
 		.text-colonne {
@@ -272,14 +286,15 @@
 				opacity: 0;
 				transition: 0.225s ease-in-out;
 				pointer-events: none;
+				z-index: 999;
 				.img-colonne {
 					position: relative;
 					&:not(:last-child) {
 						margin-right: 20px;
 					}
 					.caster-wrapper {
-						max-height: 75px;
-						max-width: 75px;
+						max-height: 50px;
+						max-width: 50px;
 						border-radius: 50%;
 						overflow: hidden;
 						position: relative;
@@ -290,12 +305,12 @@
 					}
 					&::after {
 						content:"";
-						height: 75px;
-						width: 75px;
+						height: 50px;
+						width: 50px;
 						border-radius: 50%;
 						background-color: rgba($primary-color,1);
 						position: absolute;
-						top: 5px;
+						top: 3px;
 						left: 0px;
 						z-index: 0;
 					}
@@ -334,8 +349,11 @@
 			}
 			&.live {
 				flex-direction: column;
-				.live-now,a {
-					margin-bottom: 10px;
+				> * {
+					margin-bottom: 10px !important;
+				}
+				a.button.btn-YouTube {
+					margin-bottom: 0px !important;
 				}
 				.live-now {
 					background: white;
@@ -395,6 +413,83 @@
 						animation: bounceScale 1s infinite;
 					}
 				}
+			}
+		}
+		&.ocanada {
+			.logo-colonne .logo {
+				border-color: $ocanada;
+			}
+			.text-colonne .caster-colonne .img-colonne::after {
+				background-color: rgba($ocanada, 1);
+			}
+			.button-colonne.no-live a {
+				color: $ocanada;
+			}
+		}
+		&.onu {
+			.logo-colonne .logo {
+				border-color: $onu;
+			}
+			.text-colonne .caster-colonne .img-colonne::after {
+				background-color: rgba($onu, 1);
+			}
+			.button-colonne.no-live a {
+				color: $onu;
+			}
+		}
+		&.directan {
+			.logo-colonne .logo {
+				border-color: $directan;
+			}
+			.text-colonne .caster-colonne .img-colonne::after {
+				background-color: rgba($directan, 1);
+			}
+			.button-colonne.no-live a {
+				color: $directan;
+			}
+		}
+		&.leurope {
+			.logo-colonne .logo {
+				border-color: $leurope;
+			}
+			.text-colonne .caster-colonne .img-colonne::after {
+				background-color: rgba($leurope, 1);
+			}
+			.button-colonne.no-live a {
+				color: $leurope;
+			}
+		}
+		&.qag {
+			.logo-colonne .logo {
+				border-color: $qag;
+			}
+			.text-colonne .caster-colonne .img-colonne::after {
+				background-color: rgba($qag, 1);
+			}
+			.button-colonne.no-live a {
+				color: $qag;
+			}
+		}
+		&.libreantenne {
+			.logo-colonne .logo {
+				border-color: $libreantenne;
+			}
+			.text-colonne .caster-colonne .img-colonne::after {
+				background-color: rgba($libreantenne, 1);
+			}
+			.button-colonne.no-live a {
+				color: $libreantenne;
+			}
+		}
+		&.divers {
+			.logo-colonne .logo {
+				border-color: $divers;
+			}
+			.text-colonne .caster-colonne .img-colonne::after {
+				background-color: rgba($divers, 1);
+			}
+			.button-colonne.no-live a {
+				color: $divers;
 			}
 		}
 	}
