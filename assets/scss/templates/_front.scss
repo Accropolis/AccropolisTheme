@@ -173,6 +173,9 @@
 
 #youtube-videos {
 	margin-bottom:10px;
+	> div {
+		width: 100%;
+	}
 	.column {
 		padding: 10px 0px !important;
 		&:nth-child(odd) {

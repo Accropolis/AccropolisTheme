@@ -43,6 +43,9 @@
 				margin: 10px 0;
 			}
 		}
+		.date {
+			text-transform: uppercase;
+		}
 	}
 
 	#programmation--emision-wrapper {
@@ -116,6 +119,7 @@
 		font-weight: bold;
 		margin-bottom: 10px;
 		padding: 20px;
+		text-transform: uppercase;
 		// z-index: 0;
 	}
 	.programmation--emission-no-event-today {
@@ -370,7 +374,7 @@
 					}
 					i {
 						position: absolute;
-						top: 50%; left: 50%;
+						top: 50%; left: 48%;
 						transform: translate(-50%,-50%);
 						font-size: 40px;
 						transition: .1s ease-in-out;
