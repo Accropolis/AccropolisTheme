@@ -37,6 +37,9 @@ $dateFin = new DateTime();
 $dateFin->add(DateInterval::createFromDateString('15 day'));
 $dateFin->setTime(0,0,0);
 
+$days=["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"];
+$month=["","janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
+
 $client = getClient();
 $service = new Google_Service_Calendar($client);
 
@@ -118,7 +121,7 @@ get_header(); ?>
                             case 1:echo "<aside class='event-aside'>Demain</aside>";break;
                             default: echo"<aside class='event-aside'>dans ".$diff." jours</aside>";
                         }
-                        echo "<div class='date' data-date='".$date->format("Ymd")."'></div>";
+                        echo "<div class='date' data-date=''>".$days[$date->format("w")]." ".$date->format("j")." ".$month[$date->format("n")]." ".$date->format("Y")."</div>";
                         while($event!=null && $date->diff(new DateTime($event->start->dateTime))->format("%d")==0)
                             {
                                 if(isset($event->attachments))
@@ -176,7 +179,7 @@ get_header(); ?>
                         echo "</div>";
                     }
                     else
-                        echo "<div class='programmation--emission-no-event date ".($date->diff($today)->format("%d")==0?"programmation--emission-no-event-today":"")." date' data-date='".$date->format("Ymd")."'>".($date->diff($today)->format("%d")==0?"<aside class='event-aside'>Aujourd'hui</aside>":"")."</div>";
+                        echo "<div class='programmation--emission-no-event date ".($date->diff($today)->format("%d")==0?"programmation--emission-no-event-today":"")." date' data-date=''>".($date->diff($today)->format("%d")==0?"<aside class='event-aside'>Aujourd'hui</aside>":"").$days[$date->format("w")]." ".$date->format("j")." ".$month[$date->format("n")]." ".$date->format("Y")."</div>";
 
                     $date->add(new DateInterval('P1D'));
                 }
@@ -200,13 +203,6 @@ get_header(); ?>
         <?php do_action( 'foundationpress_after_content' ); ?>
 
     </div>
-
-<script>
-    $(function(){$(".date").each(function () {
-        moment.locale("fr_FR");
-        $(this.append(moment($(this).attr("data-date")).format('dddd LL')));
-    });});
-</script>
 
 <?php get_footer();
 function sortCalendar($a,$b)
