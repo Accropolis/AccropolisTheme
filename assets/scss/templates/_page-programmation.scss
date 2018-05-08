@@ -360,31 +360,50 @@
 			justify-content: center;
 			&:not(.live) {
 				a {
-					display: block;
+					display: flex;
+					justify-content: center;
+					align-items: center;
 					width: 100px;
 					height: 100px;
 					background: white;
 					border-radius: 50%;
 					-webkit-backface-visibility: hidden;
 					position: relative;
-					&:hover i {
-						animation-name: bounce;
-						animation-duration: 1s;
-						animation-iteration-count: infinite;
+					&:after {
+						content:"Ajouter à mon google agenda";
+						font-size: 9px;
+						text-transform: uppercase;
+						text-align: center;
+						display: block;
+						position: absolute;
+						width: 100%;
+						bottom: 0;
+							transition: 0.2s ease-in-out;
+							opacity: 0;
+							transform: scale(0.7);
 					}
 					i {
-						position: absolute;
-						top: 50%; left: 48%;
-						transform: translate(-50%,-50%);
-						font-size: 40px;
-						transition: .1s ease-in-out;
+						position: relative;
+						font-size: 35px;
+						bottom: 0px;
+						transition: 0.3s ease-in-out;
 						-webkit-backface-visibility: hidden;
-						&::after {
+						&:after {
 							content:"+";
 							position: absolute;
 							font-weight: bold;
-							transform: scale(.5);
-							top: -18px; right: -18px;
+							transform: scale(0.5);
+							top: -15px; right: -15px;
+						}
+					}
+					&:hover {
+						&:after {
+							bottom: 20px;
+							opacity: 1;
+							transform: scale(1);
+						}
+						i {
+							bottom: 20px;
 						}
 					}
 				}
@@ -543,5 +562,4 @@
 			align-items: center;
 		}
 	}
-
 }
