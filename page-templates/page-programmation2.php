@@ -40,15 +40,18 @@ $dateFin->setTime(0,0,0);
 $client = getClient();
 $service = new Google_Service_Calendar($client);
 
-
-$calendarId=["tv8ulmfd66rvm0usr7mhjstogc@group.calendar.google.com"=>["logo"=>"accropodefault.png","class"=>"BuvetteAN"],//BuvetteAN
-    "4089pseg009iqs6h2fap5vv9i4@group.calendar.google.com"=>["logo"=>"logo-directan.png","class"=>"directan"],//DirectAN
-    "k2ovdv68mq92g4k3qk1fpdnft8@group.calendar.google.com"=>["logo"=>"accropodefault.png","class"=>"divers"],//Divers
-    "mdtvulfob62hs8p77qhm90jnuo@group.calendar.google.com"=>["logo"=>"logo-leurope.png","class"=>"leurope"],//L'Europe l'Europe l'Europe
-    "4f8asbgpflh0gneqb2oe3qaiqg@group.calendar.google.com"=>["logo"=>"logo-onu.png","class"=>"onu"],//La communauté de l'ONU
-    "1ekodrv7a6he47n3g8hbf2ah5s@group.calendar.google.com"=>["logo"=>"logo-libreantenne.png","class"=>"libreantenne"],//La Libre Antenne
-    "271665r41i0955is8n2c41i4is@group.calendar.google.com"=>["logo"=>"logo-ocanada.png","class"=>"ocanada"],//Ô Canada
-    "jg8mvrv45tg05j9icb3qu1ttd4@group.calendar.google.com"=>["logo"=>"logo-directan.png","class"=>"qag"],];//QAG Commentées
+// Liste des ID des agendas, avec les logos et les class CSS
+// OBLIGATOIRE /////////////
+$calendarId=[
+		// "tv8ulmfd66rvm0usr7mhjstogc@group.calendar.google.com"=>["logo"=>"accropodefault.png","class"=>"BuvetteAN"],			//BuvetteAN
+    "4089pseg009iqs6h2fap5vv9i4@group.calendar.google.com"=>["logo"=>"logo-directan.png","class"=>"directan"],					//DirectAN
+    "k2ovdv68mq92g4k3qk1fpdnft8@group.calendar.google.com"=>["logo"=>"accropodefault.png","class"=>"divers"],						//Divers
+    // "mdtvulfob62hs8p77qhm90jnuo@group.calendar.google.com"=>["logo"=>"logo-leurope.png","class"=>"leurope"],					//L'Europe l'Europe l'Europe
+    // "4f8asbgpflh0gneqb2oe3qaiqg@group.calendar.google.com"=>["logo"=>"logo-onu.png","class"=>"onu"],									//La communauté de l'ONU
+    "1ekodrv7a6he47n3g8hbf2ah5s@group.calendar.google.com"=>["logo"=>"logo-libreantenne.png","class"=>"libreantenne"],	//La Libre Antenne
+    // "271665r41i0955is8n2c41i4is@group.calendar.google.com"=>["logo"=>"logo-ocanada.png","class"=>"ocanada"],					//Ô Canada
+    "jg8mvrv45tg05j9icb3qu1ttd4@group.calendar.google.com"=>["logo"=>"logo-directan.png","class"=>"qag"] 								//QAG Commentées
+	];
 
 $optParams = array(
     'orderBy' => 'startTime',
@@ -202,10 +205,15 @@ get_header(); ?>
     </div>
 
 <script>
-    $(function(){$(".date").each(function () {
-        moment.locale("fr_FR");
-        $(this.append(moment($(this).attr("data-date")).format('dddd LL')));
-    });});
+    $(function(){
+			moment.locale("fr")
+			$(".date").each(function () {
+				var frMoment = moment($(this).attr("data-date")).locale("fr")
+				// frMoment.locale("fr_FR")
+				console.dir(frMoment)
+	      $(this.append(frMoment.format('dddd LL')));
+	    });
+		});
 </script>
 
 <?php get_footer();
