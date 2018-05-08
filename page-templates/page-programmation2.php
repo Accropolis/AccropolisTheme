@@ -53,7 +53,10 @@ $calendarId=[
     // "4f8asbgpflh0gneqb2oe3qaiqg@group.calendar.google.com"=>["logo"=>"logo-onu.png","class"=>"onu"],									//La communauté de l'ONU
     "1ekodrv7a6he47n3g8hbf2ah5s@group.calendar.google.com"=>["logo"=>"logo-libreantenne.png","class"=>"libreantenne"],	//La Libre Antenne
     // "271665r41i0955is8n2c41i4is@group.calendar.google.com"=>["logo"=>"logo-ocanada.png","class"=>"ocanada"],					//Ô Canada
-    "jg8mvrv45tg05j9icb3qu1ttd4@group.calendar.google.com"=>["logo"=>"logo-directan.png","class"=>"qag"] 								//QAG Commentées
+		"jg8mvrv45tg05j9icb3qu1ttd4@group.calendar.google.com"=>["logo"=>"logo-directan.png","class"=>"qag"] 								//QAG Commentées
+		"cogaeo9toasbifo4a3vsku425c@group.calendar.google.com"=>["logo"=>"logo-economy.png","class"=>"economy"] 						//It's the economy Stupid
+		"o5j9je9n5kusojaba7dr8dghdo@group.calendar.google.com"=>["logo"=>"logo-commeunlundi.png","class"=>"commeunlundi"] 	//Comme un lundi
+    "a58957qr4e1n0rt19v0fs6rgeg@group.calendar.google.com"=>["logo"=>"logo-partistime.png","class"=>"partistime"] 	//Comme un lundi
 	];
 
 $optParams = array(
@@ -102,7 +105,6 @@ get_header(); ?>
                             <?php the_title(); ?>
                         </div>
                     </h1>
-                    <h3 class="cons-title">Page en construction</h3>
                 </header>
                 <?php
                 $date= new DateTime();
