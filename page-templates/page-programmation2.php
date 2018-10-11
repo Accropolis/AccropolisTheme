@@ -46,17 +46,19 @@ $service = new Google_Service_Calendar($client);
 // Liste des ID des agendas, avec les logos et les class CSS
 // OBLIGATOIRE /////////////
 $calendarId=[
-		// "tv8ulmfd66rvm0usr7mhjstogc@group.calendar.google.com"=>["logo"=>"accropodefault.png","class"=>"BuvetteAN"],			//BuvetteAN
+    // "tv8ulmfd66rvm0usr7mhjstogc@group.calendar.google.com"=>["logo"=>"accropodefault.png","class"=>"BuvetteAN"],			    //BuvetteAN
     "4089pseg009iqs6h2fap5vv9i4@group.calendar.google.com"=>["logo"=>"logo-directan.png","class"=>"directan"],					//DirectAN
-    "k2ovdv68mq92g4k3qk1fpdnft8@group.calendar.google.com"=>["logo"=>"accropodefault.png","class"=>"divers"],						//Divers
+    "k2ovdv68mq92g4k3qk1fpdnft8@group.calendar.google.com"=>["logo"=>"accropodefault.png","class"=>"divers"],				   	//Divers
     // "mdtvulfob62hs8p77qhm90jnuo@group.calendar.google.com"=>["logo"=>"logo-leurope.png","class"=>"leurope"],					//L'Europe l'Europe l'Europe
-    // "4f8asbgpflh0gneqb2oe3qaiqg@group.calendar.google.com"=>["logo"=>"logo-onu.png","class"=>"onu"],									//La communauté de l'ONU
-    "1ekodrv7a6he47n3g8hbf2ah5s@group.calendar.google.com"=>["logo"=>"logo-libreantenne.png","class"=>"libreantenne"],	//La Libre Antenne
+    // "4f8asbgpflh0gneqb2oe3qaiqg@group.calendar.google.com"=>["logo"=>"logo-onu.png","class"=>"onu"],							//La communauté de l'ONU
+    "1ekodrv7a6he47n3g8hbf2ah5s@group.calendar.google.com"=>["logo"=>"logo-libreantenne.png","class"=>"libreantenne"],	        //La Libre Antenne
     // "271665r41i0955is8n2c41i4is@group.calendar.google.com"=>["logo"=>"logo-ocanada.png","class"=>"ocanada"],					//Ô Canada
-		"jg8mvrv45tg05j9icb3qu1ttd4@group.calendar.google.com"=>["logo"=>"logo-directan.png","class"=>"qag"], 							//QAG Commentées
-		"cogaeo9toasbifo4a3vsku425c@group.calendar.google.com"=>["logo"=>"logo-economy.png","class"=>"economy"],						//It's the economy Stupid
-		"o5j9je9n5kusojaba7dr8dghdo@group.calendar.google.com"=>["logo"=>"logo-commeunlundi.png","class"=>"commeunlundi"],	//Comme un lundi
-    "a58957qr4e1n0rt19v0fs6rgeg@group.calendar.google.com"=>["logo"=>"logo-partistime.png","class"=>"partistime"] 			//Partis Time
+    "jg8mvrv45tg05j9icb3qu1ttd4@group.calendar.google.com"=>["logo"=>"logo-directan.png","class"=>"qag"], 						//QAG Commentées
+    "cogaeo9toasbifo4a3vsku425c@group.calendar.google.com"=>["logo"=>"logo-economy.png","class"=>"economy"],					//It's the economy Stupid
+    "o5j9je9n5kusojaba7dr8dghdo@group.calendar.google.com"=>["logo"=>"logo-commeunlundi.png","class"=>"commeunlundi"],	        //Comme un lundi
+    "a58957qr4e1n0rt19v0fs6rgeg@group.calendar.google.com"=>["logo"=>"logo-partistime.png","class"=>"partistime"], 			    //Partis Time
+    "fjgqle0erhq5j0bmds9j28kp34@group.calendar.google.com"=>["logo"=>"logo-qas-black.png","class"=>"qas"], 			            //Questions aux sénateurs
+    "ubjigjf2l6j21imr1e0bn5k4s4@group.calendar.google.com"=>["logo"=>"accropodefault.png","class"=>"europe"]		            //Et l'Europe Bordel
 	];
 
 $optParams = array(
